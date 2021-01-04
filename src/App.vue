@@ -7,7 +7,7 @@
 	<section class="player">
 		<br>
 		<h2 class="song-title">{{ current.title }} - <span>{{ current.artist }}</span></h2>
-		<div class="control">
+		<div class="controls">
 			<button class="prev" @click="prev">Prev</button>
 			<button class="play" v-if="!isPlaying" @click="play">Play</button>
 			<button class="pause" v-else @click="pause">Pause</button>
@@ -54,6 +54,14 @@ export default {
 			this.player.src = this.current.src;
 		}
 		this.player.play();
+		this.player.addEventListener('ended', function(){
+			this.index++;
+			if (this.index > this.songs.length - 1) {
+				this.index = 0;
+			}
+			this.current = this.songs[this.index];
+			this.play(this.current);
+		}.bind(this));
 		this.isPlaying = true;
 	},
 	pause () {
@@ -100,5 +108,27 @@ header {
 	padding: 15px;
 	background-color: #212121;
 	color: #FFF;
+}
+main {
+	width: 0;
+	min-width: 768px;
+	margin: 0 auto;
+	padding: 25px;
+}
+.song-title {
+	color: #53565a;
+	font-size: 32px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+.song-title span {
+	font-weight: 400;
+	font-style: italic;
+}
+.controls {
+	display: flex;
+	justify-content: center;
+	padding: 30px 15px;
 }
 </style>
