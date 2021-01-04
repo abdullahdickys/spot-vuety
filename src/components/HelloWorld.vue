@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+    <vs-row justify="center">
+      <vs-button vs-type="filled" >Primary</vs-button>
+     </vs-row>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -54,5 +57,8 @@ li {
 }
 a {
   color: #42b983;
+}
+vs-button {
+    align-items: center; 
 }
 </style>
